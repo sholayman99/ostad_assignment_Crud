@@ -15,7 +15,7 @@ const StudentContoller = require("../Controllers/StudentContoller");
 router.post("/create" , StudentContoller.CreateStudent);
 router.get("/read" , StudentContoller.ReadStudentData);
 router.put("/update/:id" , StudentContoller.UpdateStudentData);
-router.delete("/remove/:id" , StudentContoller.ReadStudentData);
+router.delete("/remove/:id" , StudentContoller.RemoveStudentData);
 
 
 

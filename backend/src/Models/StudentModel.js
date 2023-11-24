@@ -19,7 +19,7 @@ const StudentSchema = mongoose.Schema({
   courses : {type:String}
 },
 {
-    versioKey:false,
+    versionKey:false,
     timestumps:true 
 });
 
