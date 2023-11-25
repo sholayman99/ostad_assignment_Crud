@@ -1,10 +1,12 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { readStudentData, removeStudentData } from "../apiRequest/apiRequest";
 import toast, { Toaster } from "react-hot-toast";
+import Table from 'react-bootstrap/Table';
+import { Link } from "react-router-dom";
+
 
 const StudentTable = () => {
-  const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
   const [refresh , setRefresh] = useState(0)
 
   useEffect(() => {
@@ -27,14 +29,11 @@ const StudentTable = () => {
         toast.error("Request Failed..")
     }
   };
-
-  return (
-    <div>
-      <h1 className="lg:text-2xl font-bold uppercase text-xl  text-black my-5 p-2">
-       Student List
-      </h1>
-      <div className="overflow-x-auto">
-        <table className="table table-xs md:table-sm  lg:table-md">
+    return (
+        <main className="container">
+            <div className="row">
+               <div className="col-md-12">
+               <Table responsive >
           {/* head */}
           <thead>
             <tr>
@@ -42,11 +41,11 @@ const StudentTable = () => {
               <th>LastN</th>
               <th>Gender</th>
               <th>DateOfBirth</th>
-              {/* <th>Nationality</th>
-        <th>Address</th> */}
+              <th>Nationality</th>
+              <th>Address</th>
               <th>Email</th>
               <th>Phone</th>
-              {/* <th>Admission Date</th> */}
+              <th>Admission Date</th>
               <th>Courses</th>
               <th>Action</th>
             </tr>
@@ -58,33 +57,27 @@ const StudentTable = () => {
                 <td> {d["lastName"]} </td>
                 <td> {d["gender"]} </td>
                 <td> {d["dateOfBirth"]} </td>
-                {/* <td> {d['nationality']} </td>
-                <td> {d['address']} </td> */}
+                <td> {d['nationality']} </td>
+                <td> {d['address']} </td>
                 <td> {d["email"]} </td>
                 <td> {d["phone"]} </td>
-                {/* <td> {d['admissionDate']} </td> */}
+                <td> {d['admissionDate']} </td>
                 <td> {d["courses"]} </td>
                 <td>
-                  {" "}
                   <button
                     onClick={() => handleDelete(d["_id"])}
-                    className="btn btn-xs my-1 lg:btn-sm btn-error"
-                  >
-                    Delete
-                  </button>{" "}
-                  <br />
-                  <button className="btn btn-xs lg:btn-sm btn-success">
-                    Update
-                  </button>
+                    className="btn btn-danger"> Delete </button>
                 </td>
+                <td> <Link to={"/register?id=" + d['_id']} className="btn btn-primary"> Edit </Link></td>
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
-      <Toaster position="top-center" reverseOrder={false} />
-    </div>
-  );
+          </Table>
+               </div>
+            </div>
+            <Toaster position="top-center" reverseOrder={false} />
+        </main>
+    );
 };
 
 export default StudentTable;

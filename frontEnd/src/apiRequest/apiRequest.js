@@ -46,3 +46,36 @@ export async function removeStudentData(id){
      return false;
     }
  }
+
+export async function updateStudentData(id,postBody){
+   
+    try {
+     
+     let res = await axios.put(`${BASEURL}/update/${id}` , postBody) ;
+    
+     if(res.status === 200){
+        return true
+     }else{
+        return false;
+    }
+ 
+    } catch (error) {
+     return false;
+    }
+ }
+
+
+ export async function findById(id){
+    try {
+        let res = await axios.get(`${BASEURL}/find/${id}`);
+        if(res.status === 200){
+            return res['data']['data']
+         }else{
+            return false;
+        }
+     
+        } catch (error) {
+         return false;
+        }
+    } 
+ 

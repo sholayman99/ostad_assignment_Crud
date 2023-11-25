@@ -16,6 +16,7 @@ router.post("/create" , StudentContoller.CreateStudent);
 router.get("/read" , StudentContoller.ReadStudentData);
 router.put("/update/:id" , StudentContoller.UpdateStudentData);
 router.delete("/remove/:id" , StudentContoller.RemoveStudentData);
+router.get("/find/:id" , StudentContoller.FindStudentData) ;
 
 
 

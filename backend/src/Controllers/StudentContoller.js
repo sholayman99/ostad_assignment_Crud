@@ -68,6 +68,20 @@ exports.RemoveStudentData = async(req,res) =>{
      
 }};
  
+//Find data of a student by id
+exports.FindStudentData = async(req,res) =>{
+    try {
+
+    let id = req.params.id ;
+    let result = await StudentModel.findOne({_id:id});
+    res.status(200).json({message:"Success" , data:result});
+ 
+    } catch (error) {
+ 
+     res.status(400).json({message:"Fail" , data:error});
+     
+}};
+ 
  
  
 
