@@ -30,8 +30,8 @@ const StudentTable = () => {
 
   return (
     <div>
-      <h1 className="lg:text-3xl font-bold uppercase text-xl  text-black my-5 p-2">
-        All Students
+      <h1 className="lg:text-2xl font-bold uppercase text-xl  text-black my-5 p-2">
+       Student List
       </h1>
       <div className="overflow-x-auto">
         <table className="table table-xs md:table-sm  lg:table-md">
@@ -82,10 +82,7 @@ const StudentTable = () => {
           </tbody>
         </table>
       </div>
-      <Toaster
-  position="top-center"
-  reverseOrder={false}
-/>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
