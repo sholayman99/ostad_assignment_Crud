@@ -2,10 +2,12 @@ import toast, { Toaster } from "react-hot-toast";
 import { createStudent, findById, updateStudentData } from "../apiRequest/apiRequest";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import FullScreenLoader from "./FullScreenLoader";
 
 
 const Form = () => {
-    const [updatedId,setUpdatedId] = useState(null)
+    const [updatedId,setUpdatedId] = useState(null);
+    const [loader,setLoader] = useState("d-none");
     const navigate = useNavigate()
     const [formData, setFormData] = useState({firstName: "",lastName: "",gender: "", dateOfBirth: "",
       nationality: "",address: "",email: "",phone: "",admissionDate: "",courses: ""});
@@ -35,15 +37,20 @@ const Form = () => {
     const saveData =async () => {
      console.log(updatedId)
      if(updatedId == null){
+        setLoader("");
         let res = await createStudent(formData);
+        setLoader("d-none");
         if(res){
             toast.success("Create Data Successfully");
+            navigate("/");
          
         }else{
             toast.error("Create Request Failed..")
         }
      }else{
+        setLoader("");
         let res = await updateStudentData(updatedId,formData);
+        setLoader("d-none");
         if(res){
             toast.success("Update Data Successfully");
             navigate("/");
@@ -62,6 +69,7 @@ const Form = () => {
       }));
     };
     return (
+       <>
         <main className="container my-3">
             <div className="row">
                  <div className="p-2 col-md-4">
@@ -113,6 +121,8 @@ const Form = () => {
             
             <Toaster position="top-center" />
         </main>
+        <FullScreenLoader visibility={loader} />
+       </>
     );
 };
 

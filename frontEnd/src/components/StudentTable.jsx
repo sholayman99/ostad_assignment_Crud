@@ -3,25 +3,29 @@ import { readStudentData, removeStudentData } from "../apiRequest/apiRequest";
 import toast, { Toaster } from "react-hot-toast";
 import Table from 'react-bootstrap/Table';
 import { Link } from "react-router-dom";
+import FullScreenLoader from "./FullScreenLoader";
 
 
 const StudentTable = () => {
     const [data, setData] = useState([]);
+    const [loader,setLoader] = useState("d-none");
   const [refresh , setRefresh] = useState(0)
 
   useEffect(() => {
     (async () => {
+      setLoader("");
       let res = await readStudentData();
-
+      setLoader("d-none");
       if (res["message"] === "Success") {
         setData(res["data"]);
-        console.log(res["data"]);
       }
     })();
   }, [refresh]);
 
   const handleDelete = async (id) => {
+    setLoader("");
     let res = await removeStudentData(id);
+    setLoader("d-none");
     if (res) {
         toast.success("Delete Success..")
         setRefresh(refresh+1);
@@ -30,6 +34,7 @@ const StudentTable = () => {
     }
   };
     return (
+       <>
         <main className="container">
             <div className="row">
                <div className="col-md-12">
@@ -77,6 +82,8 @@ const StudentTable = () => {
             </div>
             <Toaster position="top-center" reverseOrder={false} />
         </main>
+        <FullScreenLoader visibility={loader} />
+       </>
     );
 };
 

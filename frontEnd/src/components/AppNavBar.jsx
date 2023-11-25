@@ -1,13 +1,15 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const AppNavBar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary shadow-sm ">
       <Container>
-        <Navbar.Brand className="fw-bold">MERN APP</Navbar.Brand>
+        <Navbar.Brand className="fw-bold">
+          <Link className="nav-link" to={"/"} >MERN APP</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
