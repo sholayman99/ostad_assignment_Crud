@@ -37,13 +37,13 @@ const StudentTable = () => {
        <>
         <main className="container">
             <div className="row">
-               <div className="col-md-12">
+               <div className="col-md-12 px-2">
                <Table responsive >
           {/* head */}
           <thead>
             <tr>
-              <th>FirstN</th>
-              <th>LastN</th>
+              <th>FirstName</th>
+              <th>LastName</th>
               <th>Gender</th>
               <th>DateOfBirth</th>
               <th>Nationality</th>
@@ -53,6 +53,7 @@ const StudentTable = () => {
               <th>Admission Date</th>
               <th>Courses</th>
               <th>Action</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
