@@ -20,7 +20,7 @@ const StudentSchema = mongoose.Schema({
 },
 {
     versionKey:false,
-    timestumps:true 
+    timestamps:true 
 });
 
 const StudentModel = mongoose.model("students" , StudentSchema);
